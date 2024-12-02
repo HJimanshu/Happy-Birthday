@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday</title>
+    <style>
+        body {
+            font-family: 'Arial, sans-serif';
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: #ffe0e9;
+            overflow-x: hidden;
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+        header {
+            margin: 0;
+            padding: 0;
+            position: relative;
+            height: 400px;
+            overflow: hidden; /* Ensures no extra scrollbars in carousel */
+        }
+        .carousel {
+            display: flex;
+            height: 100%;
+            transition: transform 1s ease-in-out;
+        }
+        .carousel img {
+            width: 100%; /* Adjust width dynamically */
+            max-width: 400px;
+            height: auto;
+            object-fit: cover;
+        }
+        .hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        main {
+            padding: 20px;
+            font-size: 24px;
+            color: #ff007f;
+            background-image: url("image/billu.png");
+            background-size: cover;
+            word-wrap: break-word; /* Handle long text */
+        }
+        footer {
+            margin-top: 30px;
+            font-size: 2rem;
+        }
+        .btn-play {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #ff007f;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-play:hover {
+            background: #ff4d94;
+        }
+      /* Media Queries for Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                height: 300px;
+            }
+            .carousel img {
+                max-width: 300px;
+            }
+            main {
+                font-size: 18px;
+            }
+            footer {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                height: 250px;
+            }
+            .carousel img {
+                max-width: 250px;
+            }
+            main {
+                font-size: 16px;
+            }
+            footer {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="carousel" id="carousel">
+            <img src="./image/14.jpg" alt="Slide 1">
+            <img src="./image/9.jpg" alt="Slide 2">
+            <img src="./image/10.jpg" alt="Slide 3">
+            <img src="./image/12.jpg" alt="Slide 4">
+            <img src="./image/13.jpg" alt="Slide 5">
+        </div>
+    </header>
+    <main>
+        <h1>Happy Birthday, My Love!</h1>
+        <p>You light up my life in every possible way. Wishing you the most amazing birthday filled with love and happiness. ❤️</p>
+        <button class="btn-play" onclick="playWish()">Play Wish</button>
+    </main>
+    <footer>
+        ❤️😍🎉🎁🎂🎊💕
+    </footer>
+
+    <script>
+        const carousel = document.getElementById('carousel');
+        let index = 0;
+
+        // Carousel functionality
+        const carouselInterval = setInterval(() => {
+            index = (index + 1) % 5; // Updated for 5 images
+            carousel.style.transform = `translateX(-${index * 100}%)`;
+        }, 3000);
+
+        // Hide carousel after 10 seconds
+        setTimeout(() => {
+            carousel.classList.add('hidden');
+            clearInterval(carouselInterval); // Stop the interval
+        }, 10000);
+
+        // Text-to-Speech for Birthday Wish
+        function playWish() {
+            const text = "Happy Birthday, My Love! You light up my life in every possible way. Wishing you the most amazing birthday filled with love and happiness.";
+            const speech = new SpeechSynthesisUtterance(text);
+            speech.lang = 'en-US';
+            speech.pitch = 1;
+            speech.rate = 1;
+            speech.volume = 1;
+            window.speechSynthesis.speak(speech);
+        }
+    </script>
+</body>
+</html>
